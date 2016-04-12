@@ -1,0 +1,362 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &151546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 486660}
+  - 212: {fileID: 21263270}
+  - 68: {fileID: 6866472}
+  - 114: {fileID: 11485382}
+  m_Layer: 8
+  m_Name: Shield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &158944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 409508}
+  - 212: {fileID: 21235440}
+  - 114: {fileID: 11404628}
+  - 114: {fileID: 11416008}
+  - 114: {fileID: 11464192}
+  - 58: {fileID: 5871832}
+  - 61: {fileID: 6178254}
+  - 114: {fileID: 11457006}
+  m_Layer: 8
+  m_Name: playerSprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &189798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 421710}
+  m_Layer: 8
+  m_Name: boltSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &409508
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 486660}
+  - {fileID: 421710}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &421710
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 189798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0}
+  m_Children: []
+  m_Father: {fileID: 409508}
+  m_RootOrder: 1
+--- !u!4 &486660
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 409508}
+  m_RootOrder: 0
+--- !u!58 &5871832
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158944}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.05
+--- !u!61 &6178254
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158944}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.17, y: 0.05}
+--- !u!68 &6866472
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151546}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+  - {x: -0.18360515, y: -0.04411859}
+  - {x: -0.18309161, y: -0.026658244}
+  - {x: -0.15361433, y: 0.0028674006}
+  - {x: -0.09309029, y: 0.032565378}
+  - {x: 0.00050863624, y: 0.045639582}
+  - {x: 0.09231488, y: 0.03186878}
+  - {x: 0.15221068, y: 0.0030461699}
+  - {x: 0.18338576, y: -0.026635505}
+  - {x: 0.1836565, y: -0.043284815}
+--- !u!114 &11404628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d0d7eaa045f9845be8bb3f88fbf769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11416008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158944}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ae9153e92cab8489be5717ebb8186a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energy: 0000000000000000
+  cooldown: 0.5
+  castTime: 0
+  dashBar: 0
+  weakAttackSpeed: 1
+  weakAttackDamage: 0
+  weakAttackFireRate: 0
+  strongAttackSpeed: 1000
+  strongAttackDamage: 0
+  strongAttackFireRate: 0
+  bolt: {fileID: 179316, guid: fac0f4239d8a77741b6d73963bb792a7, type: 2}
+  castPoint: {fileID: 0}
+--- !u!114 &11457006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28962b7da72bf340a0085f70bd44b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 10
+  energy: 20
+  energyTotal: 20
+  energyHit: 0
+  energyRechargeRate: 2
+  energyRechargeTime: 4
+  charTag: {fileID: 0}
+  healthHUD: {fileID: 0}
+  energyHUD: {fileID: 0}
+  playerTeamHud: {fileID: 0}
+  dead: 0
+  anim: {fileID: 0}
+  hit: 0
+  respawnTime: 3
+  energyTimer: 0
+  player: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  startRecharge: 0
+  canRecharge: 0
+  energyDelay: 0
+  spellStop: {fileID: 0}
+--- !u!114 &11464192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f73e4e1bc158649a56111fc3302782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletSpawn: {fileID: 421710}
+  goldBolt: {fileID: 5046694, guid: 41ed90faf2f2ef0439c6013cfd5122f7, type: 2}
+  blueBolt: {fileID: 5016840, guid: f5ef847fe8880d94f908bd47ce6ed73e, type: 2}
+  Bullet: {fileID: 0}
+  shieldType: {fileID: 21263270}
+  shield: {fileID: 151546}
+  goldShield: {fileID: 21300000, guid: 216a13a09cb660548a2c8b91ce5c7a8a, type: 3}
+  blueShield: {fileID: 21300000, guid: 2d37953c72dd40f458c3fab38ab9ba65, type: 3}
+  boltCost: 1
+  shieldCost: 4
+  dashCost: 6
+  energyChangeCost: 2
+  empowerCost: 2
+  energyCharge: 0
+  Position: {x: 0, y: 0, z: 0}
+  gunName: Standard Rifle
+  clipMod: 1
+  ammoSize: 1
+  ammoCalc: 1
+  baseAmmo: 60
+  totalAmmo: 61
+  ammoInClip: 61
+  Shoot: 1
+  reloading: 0
+  wasReloading: 0
+  fastReload: 1.4
+  slowReload: 1.7
+  nextShot: 0
+  aim: 0
+  aimMod: 1.1
+  spread: 1.4
+  spreadAdd: 0.05
+  spreadTotal: 0
+  currentSpread: 0
+  spreadDecay: 11
+  decaySpread: 0
+  aimDetach: 0
+  fireRate: 120
+  adjustedFireRate: 0
+  burstCount: 1
+  burstSpeed: 0
+  bulletDamage: 21
+  BulletSpeed: 7
+  bulletLife: 1.4
+  bulletCount: 1
+  wasSprinting: 0
+  ammoHUD: {fileID: 0}
+  gunNameHUD: {fileID: 0}
+  reloadingHUD: {fileID: 0}
+  shots: 0
+  spellType: 0
+  nextShield: 0
+  startingSpellType: 1
+  nextEnergyChange: 0
+  energyInvoke: {fileID: 11457006}
+  shieldEnergyType: {fileID: 11485382}
+--- !u!114 &11485382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316ef85e895ecbc4e819583ae558fef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  shield: {fileID: 151546}
+--- !u!212 &21235440
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158944}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 617a1a55f1fd7f94eb4dfddbf2af21fb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+--- !u!212 &21263270
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151546}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 561148425
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 2d37953c72dd40f458c3fab38ab9ba65, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 158944}
+  m_IsPrefabParent: 1

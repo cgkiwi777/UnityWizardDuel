@@ -10,7 +10,13 @@ var shieldType : SpriteRenderer = GetComponentInChildren.<SpriteRenderer>();
 var shield : GameObject;
 var goldShield : Sprite;
 var blueShield : Sprite;
-var energyCharge = 0.5f;
+var boltCost = 1;
+var shieldCost = 4;
+var dashCost = 6;
+var energyChangeCost = 1;
+var empowerCost = 2;
+var energyCharge = 0;
+
 var Position:Vector3;
 //Gun Info
 var gunName = "Standard Rifle";
@@ -40,7 +46,7 @@ var decaySpread = false;
 var aimDetach = false;
 //FIRE RATE modifiers
 var fireRate : float = 750.0;
-var adjustedFireRate = 60/fireRate;
+var adjustedFireRate = 0; //60/fireRate
 private var nextFire : float = 0.0;
 //BURST modifiersxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 var burstCount = 1.0; //never below 1
@@ -65,6 +71,8 @@ var spellType = 0;
 var nextShield : float = 0.0;
 var startingSpellType = 1;
 var nextEnergyChange : float = 0.0;
+var energyInvoke : Health = GetComponent(Health);
+var shieldEnergyType = GetComponent(shieldTypeMatch);
 
 /*function Start(){
 	ammoHUD = gameObject.GetComponent(UI.Text);
@@ -77,6 +85,7 @@ function Awake(){
 	adjustedFireRate = 60/fireRate;
 	shield.SetActive(false);
 	spellType = startingSpellType;
+
 	//ammoHUD = GetComponent(UI.Text);
 	//gunNameHUD = GetComponent(UI.Text);
 	//reloadingHUD = GetComponent(UI.Text);
@@ -92,11 +101,13 @@ function Update () {
     }
 }
 
+/*function fixedUpdate(){
+shoot();
+}*/
 function canShoot(){
 	if(Input.GetMouseButton(0)&&Input.GetKeyDown("space")&&Time.time >= nextFire&&Shoot == true){
 		nextFire = (Time.time + (3*adjustedFireRate)); 
-						;	
-		
+						
 	}
 
 	if(Input.GetMouseButton(1)&&Input.GetKeyDown("space")&&Time.time >= nextFire&&Shoot == true){
@@ -104,113 +115,51 @@ function canShoot(){
 		nextShield = Time.time + 4.0f;
 						shield.SetActive(true);
 
-		
-	}
-	else if(Input.GetMouseButton(1)&&Time.time >= nextFire&&Shoot == true){
-		nextFire = (Time.time + (3*adjustedFireRate)); 
-		nextShield = Time.time + 4.0f;
-						shield.SetActive(true);
 
-		
 	}
-
-
-	else if(Input.GetMouseButton(0)&&Time.time >= nextFire&&Shoot == true){
-		nextFire = Time.time + adjustedFireRate; 
-						shoot();	
-		
-	}
-
-
-
-}
-/*
-function canShoot(){ 
-	var h : float = Input.GetAxisRaw("Horizontal");
-	var v : float = Input.GetAxisRaw("Vertical");
-	walking = (h != 0f || v != 0f);
-	sprinting = (walking && Input.GetKey ("left shift"));
-	
-	if(ammoInClip <= 0 && Shoot == true){
-		Shoot = false;
-		Reload(slowReload);
-	}
-
-	if(sprinting == true){
-		Shoot = false;
-		if(reloading == true){
-			wasReloading = true;
-			reloading = false;
-		}
-		wasSprinting = true;
-	}
-	if(sprinting == false){
-		if(ammoInClip > 0 && wasSprinting == true){
-		 Shoot = true;
-		}
-		wasSprinting = false;
-		if(wasReloading == true){
-			reloading = true;
-		}
-	}
-	
-	if(Input.GetButton("Fire2")&&aim==false){
-		spread *=  aimMod/10.0;
-		aim = true;
-	}
-	if(aim == true && !Input.GetButton("Fire2")){
-	     spread *= 10.0/aimMod;
-	     aim = false;
-	}
-
+	else if(Input.GetMouseButton(1)&&Time.time >= nextFire){
+	energyInvoke.energyDrain(shieldCost);
 	if(Shoot == true){
-		if(Input.GetButton("Fire1")&&Time.time >= nextFire&&Shoot == true){
-		nextFire = Time.time + adjustedFireRate;
-		decaySpread = false;
-			for(var burst = 0; burst < burstCount; burst++){//burst
-				if(ammoInClip > 0){
-					for (var i = 0; i < bulletCount; i++){//multiple bullets
-						shoot();	
-					}
-					ammoInClip--;
-					shots++;
-				}
-			yield WaitForSeconds(burstSpeed);
-			}
-		}
-		if (burstCount > 1){
-		decaySpread = true;
-		}
-	}
-	
-	//if(Input.GetButtonDown("Fire1") /*&&Time.time < nextFire*///&& Shoot == true){
-		/*	if(Input.GetButtonDown("Reload")){
-			Shoot = false;
-			Reload(fastReload);
-			}
-		}
-		x
-	if(!Input.GetButtonDown("Fire1")&&Input.GetButtonDown("Reload")&&Shoot == true){
-	Shoot = false;
-		Reload(fastReload);
-	}
-	if(Input.GetButtonUp("Fire1")||sprinting==true||reloading==true){
-		decaySpread = true;
+		nextFire = (Time.time + 1); 
+		nextShield = Time.time + 4.0f;
+		shield.SetActive(true);
+						}
+	else{
+		Shoot = true;
 	}
 
-}*/
+		
+	}
 
-function shoot(){
+
+	else if(Input.GetMouseButtonDown(0)){
+	energyInvoke.energyDrain(boltCost);
+	if(Shoot == true){
+		nextFire = Time.time + adjustedFireRate; 
+						shootBolt();	
+	}
+	else{
+		Shoot = true;
+	}
+	}
+}
+
+
+function shootBolt(){
 var clone : Rigidbody2D;
 clone = Instantiate(Bullet,BulletSpawn.transform.position,BulletSpawn.transform.rotation) as Rigidbody2D;
-//var bulletStats:StandardBullet = clone.GetComponent("StandardBullet");//wtf do i do with omplicit
-//bulletStats.damage = bulletDamage;
+//var boltStats:StandardBullet = clone.GetComponent("StandardBullet");//wtf do i do with omplicit
+//boltStats.damage = bulletDamage;
+clone.GetComponent(StandardBullet).playerShieldCol = shield.GetComponent(EdgeCollider2D);
+clone.GetComponent(StandardBullet).boltCol = clone.GetComponents.<CircleCollider2D>();
+
 clone.velocity = clone.transform.TransformDirection(Vector3(0,BulletSpeed));
 //Destroy(clone.gameObject, bulletLife);
 }
 
 function switchSpells(){ //toggle 1 and 0. 1 for blue, 0 for gold
 	if (Input.GetKeyDown(KeyCode.LeftControl)&&Time.time>=nextEnergyChange){
+	energyInvoke.energyDrain(energyChangeCost);
 		if (spellType == 0){
 		spellType = 1;
 		}
@@ -219,10 +168,12 @@ function switchSpells(){ //toggle 1 and 0. 1 for blue, 0 for gold
 		}	
 		nextFire = Time.time + energyCharge; 
 		nextEnergyChange = Time.time + energyCharge;
+
 	}
 	if (spellType == 1){
 	if (Time.time>nextShield){
 		shieldType.sprite = goldShield;
+		shieldEnergyType.type = 2;
 		}
 
 		Bullet = goldBolt;
@@ -230,49 +181,8 @@ function switchSpells(){ //toggle 1 and 0. 1 for blue, 0 for gold
 	if (spellType == 0){
 	if (Time.time>nextShield){
 		shieldType.sprite = blueShield;
+		shieldEnergyType.type = 1;
 		}
 		Bullet = blueBolt;
 	}
 }
-/*
-function OnGUI (){
-//GUI.Label(Rect(10,40,100,20), "Ammo : "+ ammoInClip);
-ammoHUD.text="Ammo: "+ammoInClip.ToString();
-gunNameHUD.text= gunName;
-if(nextFire <= Time.time){
-	reloadingHUD.text="Chambered";
-}
-
-if(reloading == true){
-	//GUI.Label(Rect(10,55,100,20), "Reloading");
-	reloadingHUD.text="Reloading";
-	}
-if (nextFire >= Time.time && reloading == false){
-	reloadingHUD.text="Chambering";
-	}
-
-}
-
-function Reload (reloadTime){
-reloading = true;
-Shoot = false;
-yield WaitForSeconds (reloadTime);
-while(reloading == false){
-	yield WaitForSeconds (reloadTime);
-	}
-ammoInClip = totalAmmo;
-reloading = false;
-Shoot = true;
-}
-
-function SpreadDecay(){
-if(decaySpread == true){
-		spreadTotal -= Time.deltaTime*spreadDecay;
-		if (spreadTotal <= 0){
-		spreadTotal = 0;
-		}
-	}
-	*/
-
-
-

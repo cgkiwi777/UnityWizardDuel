@@ -1,77 +1,62 @@
 ﻿#pragma strict
 import UnityEngine.UI;
-var Health : float = 100.0;
-var Shields : float = 100.0;
-var ShieldTotal = 100;
+var Health : float = 10.0;
+var energy : float = 20.0;
+var energyTotal = 20;
 //var healthGUI : GUITexture;
-//var shieldGUI : GUITexture;
-var shieldsHit = false;
-var shieldsRechargeRate : float = ShieldTotal/3.0;
-var shieldsRechargeTime = 3.0;
+//var energyGUI : GUITexture;
+var energyHit = false;
+var energyRechargeRate : float = 2.0;
+var energyRechargeTime = 4.0;
 var controller;
 var charTag : GameObject;
 var healthHUD : Text = GetComponent(UI.Text);
-var shieldHUD : Text = GetComponent(UI.Text);
+var energyHUD : Text = GetComponent(UI.Text);
 var playerTeamHud : Text = GetComponent(UI.Text);
 var dead = false;
 var anim : Animator;  
 var hit = false;                
 var respawnTime = 3.0;
-var shieldTimer = 0.0;
+var energyTimer = 0.0;
 var player : Transform;
 var spawnPoint : Transform;
 var startRecharge = false;
 var canRecharge = false;
-var shieldDelay = false;
+var energyDelay = false;
+var spellStop = GetComponent(BulletSpawn);
 
 function Update () {
-	controller = charTag.tag;
-	OnGUI();
+	//controller = charTag.tag;
+	//OnGUI();
 	ifDead();
-	shieldRecharge();
-	stopShieldRegen();
+	energyRecharge();
 }
 
-function OnGUI(){
+/*function OnGUI(){
 	healthHUD.text="Health: "+Health.ToString("F2");
-	shieldHUD.text="Shield: "+Shields.ToString("F2");
+	energyHUD.text="energy: "+energy.ToString("F2");
 	playerTeamHud.text="Team "+controller.ToString();
-}
+}*/
 
 function Damage(damage:float){
-	if(damage > Shields){
-		Shields -= damage;
-		Health += Shields;
-		Shields = 0;
-	}
-	else if (Shields > 0 ){
-		Shields -= damage;
-	}
-	 startRecharge = true;
-	 shieldDelay = false;
+		Health -= damage;
 }
 
-function shieldRecharge(){
-if (dead == false){
-	if(Shields<100 && canRecharge == true){
-		Shields += (shieldsRechargeRate)*Time.deltaTime;
-		}
-	if (Shields >= 100){
-		Shields = 100;
-		}
-	}
+
+function energyDrain(drain:float){
+		if ((energy-drain) < 0){
+		spellStop.Shoot = false;
+		 } 
+		energy -= drain;
 }
-function stopShieldRegen(){   //
-	if (startRecharge == true){
-		startRecharge = false; 
-		canRecharge = false;
-		shieldTimer = 0.0;
-		shieldDelay = true;
-	}
-	if(shieldDelay == true && shieldTimer <=shieldsRechargeTime){
-		shieldTimer += Time.deltaTime;
-		if(shieldTimer >= shieldsRechargeTime){
-			canRecharge = true;
+
+function energyRecharge(){
+if (dead == false){
+	if(energy<energyTotal){
+		energy += (energyRechargeRate)*Time.deltaTime;
+		}
+	if (energy >= energyTotal){
+		energy = energyTotal;
 		}
 	}
 }
@@ -84,13 +69,13 @@ function ifDead(){
 	if(Health <= 0 && dead == false){
 		Health = 0;
 		dead = true;
-		Shields = 0;
+		energy = 0;
 	 	anim.SetBool ("Death", dead);
 	 	yield WaitForSeconds (respawnTime);
 	 	player.transform.position = spawnPoint.position;
 	 	dead = false;
 	 	anim.SetBool ("Death", dead);
 	 	Health = 100;
-	 	Shields = 100;
+	 	energy = 100;
 	 }
 }

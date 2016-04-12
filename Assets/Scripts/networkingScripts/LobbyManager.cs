@@ -79,7 +79,7 @@ public class LobbyManager : NetworkLobbyManager {
         playScene = maps[Random.Range(0,maps.Count)];
         int index = Random.Range(0, prefabs.Count);
         gamePlayerPrefab = prefabs[index];
-        gamePlayerPrefab.GetComponent<Movement>().characterIndex = index;
+        //gamePlayerPrefab.GetComponent<Movement>().characterIndex = index;
     }
 
     public override void OnStartHost()

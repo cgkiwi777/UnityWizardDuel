@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 479814}
   - 212: {fileID: 21214394}
   - 50: {fileID: 5060916}
+  - 114: {fileID: 11451844}
   m_Layer: 0
   m_Name: bolt
   m_TagString: Untagged
@@ -46,6 +47,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &11451844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2456c0928e61ee24e967b32c90e104de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  ownerID: 
+  damaged: 0
 --- !u!212 &21214394
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -71,7 +86,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300002, guid: 5873c69ab8179eb479c071f64b0e43fa, type: 3}
   m_Color: {r: 0.97647065, g: 0.97647065, b: 0.97647065, a: 1}
   m_FlipX: 0
@@ -107,6 +122,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_UseAutoMass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
