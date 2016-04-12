@@ -61,6 +61,9 @@ MonoBehaviour:
   damage: 10
   ownerID: 
   damaged: 0
+  playerShieldCol: {fileID: 0}
+  boltCol: []
+  boltLife: 1
 --- !u!212 &21214394
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -126,6 +129,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: boltLife
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

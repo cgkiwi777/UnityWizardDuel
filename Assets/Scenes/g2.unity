@@ -180,6 +180,14 @@ Prefab:
       propertyPath: camera
       value: 
       objectReference: {fileID: 2038667600}
+    - target: {fileID: 11475808, guid: 7266afc1a5a901146a480ac53c5e161f, type: 2}
+      propertyPath: dashDistance
+      value: 1.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 11475808, guid: 7266afc1a5a901146a480ac53c5e161f, type: 2}
+      propertyPath: playerSpeed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7266afc1a5a901146a480ac53c5e161f, type: 2}
   m_IsPrefabParent: 0

@@ -1,9 +1,9 @@
 ﻿#pragma strict
-public var playerSpeed = 5.0f;
+public var playerSpeed = 3.0f;
 public var dashCost = 6;
 public var health:Health = GetComponent(Health);
 public var mousePosition:Vector3; 
-public var dashDistance = 1.25;
+public var dashDistance = 1.77;
 public var dist : float;
 public var angle: float; 
 var direction: Vector3;

@@ -4,7 +4,7 @@ var ownerID : String;
 var damaged = false;
 var playerShieldCol : EdgeCollider2D;
 var boltCol : CircleCollider2D[];
-
+var boltLife = 1;
 
 function Start(){
 //playerShieldCol = gameObject.GetComponentInParent(EdgeCollider2D);
@@ -12,6 +12,10 @@ function Start(){
 
 Physics2D.IgnoreCollision(playerShieldCol, boltCol[0]);
 Physics2D.IgnoreCollision(playerShieldCol, boltCol[1]);
+}
+
+function Awake(){
+	Destroy(gameObject, boltLife);
 }
 
 function OnTriggerEnter(collision : Collider) {
