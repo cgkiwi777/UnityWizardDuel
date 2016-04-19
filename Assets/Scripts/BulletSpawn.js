@@ -98,45 +98,45 @@ function Update () {
     //SpreadDecay();
     if(Time.time >= nextShield){
     shield.SetActive(false);
+    Debug.DrawLine(transform.position, transform.position + Vector3.forward, Color.red );
     }
 }
 
+//function Fixed
 /*function fixedUpdate(){
 shoot();
 }*/
 function canShoot(){
 	if(Input.GetMouseButton(0)&&Input.GetKeyDown("space")&&Time.time >= nextFire&&Shoot == true){
-		nextFire = (Time.time + (3*adjustedFireRate)); 
-						
+		nextFire = (Time.time + (3*adjustedFireRate));
+		shootRay();
 	}
 
 	if(Input.GetMouseButton(1)&&Input.GetKeyDown("space")&&Time.time >= nextFire&&Shoot == true){
-		nextFire = (Time.time + (3*adjustedFireRate)); 
+		nextFire = (Time.time + (3*adjustedFireRate));
 		nextShield = Time.time + 4.0f;
-						shield.SetActive(true);
-
-
+		shield.SetActive(true);
 	}
+
 	else if(Input.GetMouseButton(1)&&Time.time >= nextFire){
 	energyInvoke.energyDrain(shieldCost);
 	if(Shoot == true){
 		nextFire = (Time.time + 1); 
 		nextShield = Time.time + 4.0f;
 		shield.SetActive(true);
-						}
+	}
+
 	else{
 		Shoot = true;
 	}
-
-		
 	}
 
 
 	else if(Input.GetMouseButtonDown(0)){
 	energyInvoke.energyDrain(boltCost);
 	if(Shoot == true){
-		nextFire = Time.time + adjustedFireRate; 
-						shootBolt();	
+		nextFire = Time.time + adjustedFireRate;
+		shootBolt();
 	}
 	else{
 		Shoot = true;
@@ -157,6 +157,10 @@ clone.velocity = clone.transform.TransformDirection(Vector3(0,BulletSpeed));
 //Destroy(clone.gameObject, bulletLife);
 }
 
+function shootRay(){
+//var hit: Raycasthit = Physics.Raycast(transform.position, Vector3.forward); 
+}
+
 function switchSpells(){ //toggle 1 and 0. 1 for blue, 0 for gold
 	if (Input.GetKeyDown(KeyCode.LeftControl)&&Time.time>=nextEnergyChange){
 	energyInvoke.energyDrain(energyChangeCost);
@@ -168,14 +172,12 @@ function switchSpells(){ //toggle 1 and 0. 1 for blue, 0 for gold
 		}	
 		nextFire = Time.time + energyCharge; 
 		nextEnergyChange = Time.time + energyCharge;
-
 	}
 	if (spellType == 1){
 	if (Time.time>nextShield){
 		shieldType.sprite = goldShield;
 		shieldEnergyType.type = 2;
 		}
-
 		Bullet = goldBolt;
 	}
 	if (spellType == 0){
