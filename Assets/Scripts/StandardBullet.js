@@ -6,6 +6,7 @@ var playerShieldCol : EdgeCollider2D;
 var boltCol : CircleCollider2D[];
 var boltLife = 1;
 
+
 function Start(){
 //playerShieldCol = gameObject.GetComponentInParent(EdgeCollider2D);
 //boltCol = gameObject.GetComponents.<CircleCollider2D>();
@@ -46,5 +47,8 @@ damaged = true;
 Destroy(this.gameObject);
 	}
 }
+
+this.gameObject.GetComponent.<SpriteRenderer>().enabled = false;
+
 
 }

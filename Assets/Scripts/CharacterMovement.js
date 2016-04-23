@@ -8,12 +8,13 @@ public var dist : float;
 public var angle: float; 
 public var camera:Camera;
 var direction: Vector3;
-
+public var cameraPoint: GameObject;
+public var mouseToScreen: Vector3;
 
 
 function Update () {
 		var mousePos =  Input.mousePosition;
-		mousePos.z = 2.5;
+		mousePos.z = 4;
 		mousePosition = Camera.main.ScreenToWorldPoint(mousePos);
 		mousePosition.z = 0;
 
@@ -21,7 +22,11 @@ function Update () {
 		dist = Vector3.Distance(transform.position, mousePosition);
 		var rawMouse:Vector3 = (mousePos - mouseDir);
 		direction = (mousePos - mouseDir).normalized;
-		//Camera.main.transform.localPosition =  transform.TransformPoint(Input.mousePosition);
+
+		mouseToScreen = Camera.main.ScreenToViewportPoint(rawMouse);
+
+		cameraPoint.transform.localPosition =  mouseToScreen*1; 
+		mouseToScreen.z = -4f;
         //angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
 	
   //Player to move vector directions.
