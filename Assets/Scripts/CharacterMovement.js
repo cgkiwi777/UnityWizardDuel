@@ -10,7 +10,12 @@ public var camera:Camera;
 var direction: Vector3;
 public var cameraPoint: GameObject;
 public var mouseToScreen: Vector3;
+public var playerRB: Rigidbody2D;
+public var movement: Vector2;
 
+function Start() {
+	 playerRB = GetComponent.<Rigidbody2D>();
+}
 
 function Update () {
 		var mousePos =  Input.mousePosition;
@@ -31,9 +36,7 @@ function Update () {
 	
   //Player to move vector directions.
       
-        var movement = Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"),0);
-        movement.Normalize();
-        transform.Translate(movement * Time.deltaTime * playerSpeed);
+
 
         if (Input.GetKeyUp(KeyCode.LeftShift)) //dash
         {
@@ -52,5 +55,13 @@ function Update () {
 
 }
 
+	function FixedUpdate ()
+	{
+		movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movement.Normalize();
+        //transform.Translate(movement * Time.deltaTime * playerSpeed);
+        playerRB.velocity = (movement*playerSpeed*Time.deltaTime);
+
+	}
 
 

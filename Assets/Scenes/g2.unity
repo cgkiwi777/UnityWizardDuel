@@ -121,6 +121,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 333711600}
   - 114: {fileID: 333711599}
+  - 50: {fileID: 333711601}
   m_Layer: 8
   m_Name: playerCharMage
   m_TagString: Player
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a95340091352491448f37361dc09b52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 3
+  playerSpeed: 300
   dashCost: 6
   health: {fileID: 611894660}
   mousePosition: {x: 0, y: 0, z: 0}
@@ -151,6 +152,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   cameraPoint: {fileID: 11981795}
   mouseToScreen: {x: 0, y: 0, z: 0}
+  playerRB: {fileID: 0}
+  movement: {x: 0, y: 0}
 --- !u!4 &333711600
 Transform:
   m_ObjectHideFlags: 0
@@ -158,13 +161,30 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 333711598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.02, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1563123943}
   - {fileID: 11981796}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &333711601
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 333711598}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &503433204
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +435,14 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 136270, guid: b1256982ef806f340913332bb57d05dc, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 104480, guid: b1256982ef806f340913332bb57d05dc, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1256982ef806f340913332bb57d05dc, type: 2}
   m_IsPrefabParent: 0
@@ -435,7 +463,7 @@ GameObject:
   - 114: {fileID: 611894660}
   m_Layer: 8
   m_Name: playerSprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
